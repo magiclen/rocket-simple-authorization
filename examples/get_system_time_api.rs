@@ -1,21 +1,15 @@
 #[macro_use]
 extern crate rocket;
 
-#[macro_use]
-extern crate rocket_simple_authorization;
-
-extern crate chrono;
-extern crate short_crypt;
-
 use rocket::http::Status;
 use rocket::request::Request;
 
-use rocket_simple_authorization::SimpleAuthorization;
+use rocket_simple_authorization::{authorizer, SimpleAuthorization};
 
 use chrono::prelude::*;
 use short_crypt::ShortCrypt;
 
-const KEY: &'static str = "magickey";
+const KEY: &str = "magickey";
 
 // 1. Implement any struct you want for authorization.
 pub struct Auth {

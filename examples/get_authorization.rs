@@ -1,12 +1,9 @@
 #[macro_use]
 extern crate rocket;
 
-#[macro_use]
-extern crate rocket_simple_authorization;
-
 use rocket::request::Request;
 
-use rocket_simple_authorization::SimpleAuthorization;
+use rocket_simple_authorization::{authorizer, SimpleAuthorization};
 
 // 1. Implement any struct you want for authorization.
 pub struct AuthKey<'a> {
@@ -15,7 +12,7 @@ pub struct AuthKey<'a> {
 
 impl<'a> AuthKey<'a> {
     pub fn as_str(&self) -> Option<&'a str> {
-        self.authorization.clone()
+        self.authorization
     }
 }
 
