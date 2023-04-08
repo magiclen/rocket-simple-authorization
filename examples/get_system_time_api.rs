@@ -1,12 +1,9 @@
 #[macro_use]
 extern crate rocket;
 
-use rocket::http::Status;
-use rocket::request::Request;
-
-use rocket_simple_authorization::{authorizer, SimpleAuthorization};
-
 use chrono::prelude::*;
+use rocket::{http::Status, request::Request};
+use rocket_simple_authorization::{authorizer, SimpleAuthorization};
 use short_crypt::ShortCrypt;
 
 const KEY: &str = "magickey";
@@ -29,21 +26,15 @@ impl<'r> SimpleAuthorization<'r> for Auth {
         let sc = request.rocket().state::<ShortCrypt>().unwrap();
 
         match authorization {
-            Some(authorization) => {
-                match sc.decrypt_url_component(authorization) {
-                    Ok(result) => {
-                        match String::from_utf8(result) {
-                            Ok(user_name) => {
-                                Some(Auth {
-                                    auth_data: user_name,
-                                })
-                            }
-                            Err(_) => None,
-                        }
-                    }
+            Some(authorization) => match sc.decrypt_url_component(authorization) {
+                Ok(result) => match String::from_utf8(result) {
+                    Ok(user_name) => Some(Auth {
+                        auth_data: user_name
+                    }),
                     Err(_) => None,
-                }
-            }
+                },
+                Err(_) => None,
+            },
             None => None,
         }
     }

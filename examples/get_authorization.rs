@@ -2,7 +2,6 @@
 extern crate rocket;
 
 use rocket::request::Request;
-
 use rocket_simple_authorization::{authorizer, SimpleAuthorization};
 
 // 1. Implement any struct you want for authorization.

@@ -3,6 +3,7 @@ name = "rocket-simple-authorization"
 version = "0.10.2"
 authors = ["Magic Len <len@magiclen.org>"]
 edition = "2021"
+rust-version = "1.63"
 repository = "https://github.com/magiclen/rocket-simple-authorization"
 homepage = "https://magiclen.org/rocket-simple-authorization"
 keywords = ["rocket", "server", "web", "authorization", "authorize"]

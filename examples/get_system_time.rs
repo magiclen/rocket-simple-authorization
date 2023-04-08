@@ -14,9 +14,9 @@ fn main() {
                 200 => println!("{}", r.text().unwrap()),
                 _ => eprintln!("Unknown error. The status code is {}.", status_code),
             }
-        }
+        },
         Err(_) => {
             eprintln!("Please run api.rs first. Use `cargo run --example get_system_time_api`.")
-        }
+        },
     }
 }
