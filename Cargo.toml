@@ -9,7 +9,6 @@ homepage = "https://magiclen.org/rocket-simple-authorization"
 keywords = ["rocket", "server", "web", "authorization", "authorize"]
 categories = ["parser-implementations", "web-programming"]
 description = "This crate provides a request guard builder used for authorization."
-readme = "README.md"
 license = "MIT"
 include = ["src/**/*", "Cargo.toml", "README.md", "LICENSE"]
 
