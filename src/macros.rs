@@ -13,7 +13,9 @@ macro_rules! authorizer {
 
                 match <$name as $crate::SimpleAuthorization>::authorizing(request, key).await {
                     Some(ins) => $crate::rocket::outcome::Outcome::Success(ins),
-                    None => $crate::rocket::outcome::Outcome::Forward(()),
+                    None => $crate::rocket::outcome::Outcome::Forward(
+                        $crate::rocket::http::Status::Unauthorized,
+                    ),
                 }
             }
         }
@@ -41,7 +43,9 @@ macro_rules! authorizer {
 
                 match cache.as_ref() {
                     Some(cache) => $crate::rocket::outcome::Outcome::Success(cache),
-                    None => $crate::rocket::outcome::Outcome::Forward(()),
+                    None => $crate::rocket::outcome::Outcome::Forward(
+                        $crate::rocket::http::Status::Unauthorized,
+                    ),
                 }
             }
         }
