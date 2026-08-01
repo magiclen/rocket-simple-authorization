@@ -33,7 +33,7 @@ authorizer!(AuthKey<'r>);
 
 // 4. Use the auth struct as a request guard.
 #[get("/")]
-fn authorization(auth_key: AuthKey) -> &str {
+fn authorization(auth_key: AuthKey<'_>) -> &str {
     // 5. Handle the auth struct.
     auth_key.as_str().unwrap_or("")
 }
